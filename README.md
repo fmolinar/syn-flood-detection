@@ -17,6 +17,13 @@ This repository reproduces and extends:
 - Code: `simulation/traffic_gen.py`, `simulation/stats_collector.py`
 - Triggered via: `sudo python3 simulation/fig3_topology.py --collect-normal 50 --controller remote`
 
+### Milestone 6 — ML Classifier Training
+- Trains Random Forest (primary), MLP, and SVM on `data/train.csv`
+- Reports Accuracy, Precision, Recall, F-Measure (Table III of the paper)
+- Saves trained Random Forest to `data/model.pkl` for Milestones 7 & 8
+- Code: `simulation/train_classifier.py`
+- Run via: `python3 simulation/train_classifier.py`
+
 ### Milestone 5 — Dataset Builder
 - Merges `data/raw/normal/` and `data/raw/attack/` JSON files into a balanced, labeled CSV
 - Stratified 80/20 train/test split → `data/dataset.csv`, `data/train.csv`, `data/test.csv`
@@ -40,6 +47,7 @@ Follow these in order:
 5. `docs/steps/05-collect-normal-stats/README.md`
 6. `docs/steps/06-collect-attack-stats/README.md`
 7. `docs/steps/07-build-dataset/README.md`
+8. `docs/steps/08-train-classifier/README.md`
 
 Additional topology details:
 - `simulation/README.md`
