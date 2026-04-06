@@ -17,6 +17,12 @@ This repository reproduces and extends:
 - Code: `simulation/traffic_gen.py`, `simulation/stats_collector.py`
 - Triggered via: `sudo python3 simulation/fig3_topology.py --collect-normal 50 --controller remote`
 
+### Milestone 5 — Dataset Builder
+- Merges `data/raw/normal/` and `data/raw/attack/` JSON files into a balanced, labeled CSV
+- Stratified 80/20 train/test split → `data/dataset.csv`, `data/train.csv`, `data/test.csv`
+- Code: `simulation/build_dataset.py`
+- Run via: `python3 simulation/build_dataset.py`
+
 ### Milestone 4 — TCP-SYN Attack + Attack Dataset Collection
 - Scapy SYN flood launched from `h1`, `h2` → victim `h8` for the full collection window
 - Differential port stats collected simultaneously → `data/raw/attack/N_*.json` labeled `"attack"`
@@ -33,6 +39,7 @@ Follow these in order:
 4. `docs/steps/04-verify/README.md`
 5. `docs/steps/05-collect-normal-stats/README.md`
 6. `docs/steps/06-collect-attack-stats/README.md`
+7. `docs/steps/07-build-dataset/README.md`
 
 Additional topology details:
 - `simulation/README.md`
