@@ -11,6 +11,7 @@ Implemented artifacts:
 - `stats_collector.py`: Polls Ryu REST API every 5 s and writes differential port statistics (Table I) as JSON files. Milestone 3.
 - `build_dataset.py`: Merges normal and attack JSON files into a balanced, labeled CSV dataset with stratified 80/20 train/test split. Milestone 5.
 - `train_classifier.py`: Trains Random Forest, MLP, and SVM; reports Table III metrics; saves `data/model.pkl` for Milestones 7 & 8. Milestone 6.
+- `threat_detector.py`: Applies port threshold Φ to classify flows as normal or attack (Equations 3–5). Milestone 7.
 
 ## Topology At A Glance
 
