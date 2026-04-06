@@ -17,6 +17,12 @@ This repository reproduces and extends:
 - Code: `simulation/traffic_gen.py`, `simulation/stats_collector.py`
 - Triggered via: `sudo python3 simulation/fig3_topology.py --collect-normal 50 --controller remote`
 
+### Milestone 7 — Threat Detection
+- Applies port threshold Φ=0.3 (Equations 3–5) to classify each flow as normal or attack
+- Works on JSON stat directories (live) or labeled CSV (offline evaluation)
+- Code: `simulation/threat_detector.py`
+- Run via: `python3 simulation/threat_detector.py --csv data/test.csv --phi 0.3`
+
 ### Milestone 6 — ML Classifier Training
 - Trains Random Forest (primary), MLP, and SVM on `data/train.csv`
 - Reports Accuracy, Precision, Recall, F-Measure (Table III of the paper)
@@ -48,6 +54,7 @@ Follow these in order:
 6. `docs/steps/06-collect-attack-stats/README.md`
 7. `docs/steps/07-build-dataset/README.md`
 8. `docs/steps/08-train-classifier/README.md`
+9. `docs/steps/09-threat-detection/README.md`
 
 Additional topology details:
 - `simulation/README.md`
