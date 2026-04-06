@@ -12,6 +12,7 @@ Implemented artifacts:
 - `build_dataset.py`: Merges normal and attack JSON files into a balanced, labeled CSV dataset with stratified 80/20 train/test split. Milestone 5.
 - `train_classifier.py`: Trains Random Forest, MLP, and SVM; reports Table III metrics; saves `data/model.pkl` for Milestones 7 & 8. Milestone 6.
 - `threat_detector.py`: Applies port threshold Φ to classify flows as normal or attack (Equations 3–5). Milestone 7.
+- `threat_localizer.py`: Applies switch threshold Θ across U flows to find switch ψ and identify attacker hosts (Equations 6–7). Milestone 8.
 
 ## Topology At A Glance
 

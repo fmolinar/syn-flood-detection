@@ -17,6 +17,13 @@ This repository reproduces and extends:
 - Code: `simulation/traffic_gen.py`, `simulation/stats_collector.py`
 - Triggered via: `sudo python3 simulation/fig3_topology.py --collect-normal 50 --controller remote`
 
+### Milestone 8 — Threat Localization
+- Applies switch threshold Θ=3 (Equations 6–7) across U=100 flows to find ψ (most-flagged switch)
+- Looks up hosts directly connected to ψ → identifies the attacker machines
+- Reproduces Figure 9: Switch 2 flagged most often → h1, h2 are attackers
+- Code: `simulation/threat_localizer.py`
+- Run via: `python3 simulation/threat_localizer.py --attack-dir data/raw/attack --theta 3`
+
 ### Milestone 7 — Threat Detection
 - Applies port threshold Φ=0.3 (Equations 3–5) to classify each flow as normal or attack
 - Works on JSON stat directories (live) or labeled CSV (offline evaluation)
@@ -55,6 +62,7 @@ Follow these in order:
 7. `docs/steps/07-build-dataset/README.md`
 8. `docs/steps/08-train-classifier/README.md`
 9. `docs/steps/09-threat-detection/README.md`
+10. `docs/steps/10-threat-localization/README.md`
 
 Additional topology details:
 - `simulation/README.md`
