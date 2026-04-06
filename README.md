@@ -4,16 +4,24 @@ This repository reproduces and extends:
 
 > Flood Control: TCP-SYN Flood Detection for Software-Defined Networks using OpenFlow Port Statistics
 
-## Milestone 1 Implemented
+## Milestones Implemented
 
-Figure 3 SDN topology simulation is now implemented with:
-- 10 hosts (`h1` to `h10`)
-- 12 switches (`s0` to `s11`)
+### Milestone 1 — Figure 3 Topology
+- 10 hosts (`h1` to `h10`), 12 switches (`s0` to `s11`)
 - Paper-consistent attacker/victim mapping (`h1`, `h2` attackers; `h8` victim)
+- Code: `simulation/fig3_topology.py`, `simulation/topology_spec.py`
 
-Code:
-- `simulation/fig3_topology.py`
-- `simulation/topology_spec.py`
+### Milestones 2 + 3 — Normal Traffic + Differential Port Stats Collection
+- IPerf flow generator: random src/dst pairs, 10 Mbps, 5 s, N=50 flows
+- Ryu REST API poller: differential port stats (Table I) every 5 s → `data/raw/normal/N_*.json`
+- Code: `simulation/traffic_gen.py`, `simulation/stats_collector.py`
+- Triggered via: `sudo python3 simulation/fig3_topology.py --collect-normal 50 --controller remote`
+
+### Milestone 4 — TCP-SYN Attack + Attack Dataset Collection
+- Scapy SYN flood launched from `h1`, `h2` → victim `h8` for the full collection window
+- Differential port stats collected simultaneously → `data/raw/attack/N_*.json` labeled `"attack"`
+- Code: `simulation/syn_flood.py` (attack script invoked per-host via Mininet popen)
+- Triggered via: `sudo python3 simulation/fig3_topology.py --collect-attack 50 --controller remote`
 
 ## Step-by-Step READMEs
 
@@ -23,6 +31,8 @@ Follow these in order:
 2. `docs/steps/02-start-controller/README.md`
 3. `docs/steps/03-run-figure3-topology/README.md`
 4. `docs/steps/04-verify/README.md`
+5. `docs/steps/05-collect-normal-stats/README.md`
+6. `docs/steps/06-collect-attack-stats/README.md`
 
 Additional topology details:
 - `simulation/README.md`

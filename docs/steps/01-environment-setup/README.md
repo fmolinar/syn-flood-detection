@@ -10,6 +10,15 @@ sudo apt update
 sudo apt install -y mininet openvswitch-switch python3 python3-pip git
 ```
 
+## 2. Install Python dependencies
+
+```bash
+pip install requests scapy
+```
+
+- `requests` — used by the stats collector to poll the Ryu REST API
+- `scapy` — used by the SYN flood attacker script
+
 ## 2. Clone the repository
 
 ```bash
