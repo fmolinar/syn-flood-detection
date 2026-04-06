@@ -4,9 +4,11 @@ This folder contains the first implementation milestone for the paper:
 
 > Flood Control: TCP-SYN Flood Detection for Software-Defined Networks using OpenFlow Port Statistics
 
-Implemented artifact:
-- `fig3_topology.py`: Mininet topology runner for Figure 3.
+Implemented artifacts:
+- `fig3_topology.py`: Mininet topology runner for Figure 3. Also orchestrates traffic generation and stats collection via `--collect-normal N`.
 - `topology_spec.py`: Node and link definitions used by the runner.
+- `traffic_gen.py`: Generates N normal IPerf flows (10 Mbps, 5 s, random src/dst pairs). Milestone 2.
+- `stats_collector.py`: Polls Ryu REST API every 5 s and writes differential port statistics (Table I) as JSON files. Milestone 3.
 
 ## Topology At A Glance
 
