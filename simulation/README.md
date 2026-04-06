@@ -9,6 +9,7 @@ Implemented artifacts:
 - `topology_spec.py`: Node and link definitions used by the runner.
 - `traffic_gen.py`: Generates N normal IPerf flows (10 Mbps, 5 s, random src/dst pairs). Milestone 2.
 - `stats_collector.py`: Polls Ryu REST API every 5 s and writes differential port statistics (Table I) as JSON files. Milestone 3.
+- `build_dataset.py`: Merges normal and attack JSON files into a balanced, labeled CSV dataset with stratified 80/20 train/test split. Milestone 5.
 
 ## Topology At A Glance
 

@@ -13,11 +13,13 @@ sudo apt install -y mininet openvswitch-switch python3 python3-pip git
 ## 2. Install Python dependencies
 
 ```bash
-pip install requests scapy
+pip install requests scapy pandas scikit-learn
 ```
 
-- `requests` — used by the stats collector to poll the Ryu REST API
-- `scapy` — used by the SYN flood attacker script
+- `requests` — stats collector polls Ryu REST API
+- `scapy` — SYN flood attack script
+- `pandas` — dataset builder and ML pipeline
+- `scikit-learn` — train/test split and Random Forest classifier
 
 ## 2. Clone the repository
 
