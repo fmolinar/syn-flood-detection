@@ -39,7 +39,8 @@ class Figure3Topology(Topo):
             switch_num = int(switch[1:])
             # Avoid a zero DPID for s0 while keeping switch names aligned with the paper.
             dpid = f"{switch_num + 1:016x}"
-            self.addSwitch(switch, dpid=dpid, protocols="OpenFlow13")
+            self.addSwitch(switch, dpid=dpid, protocols="OpenFlow13",
+                           failMode="standalone")
 
         for host in HOSTS:
             host_num = int(host[1:])
@@ -133,8 +134,10 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
 
 def add_controller(net: Mininet, args: argparse.Namespace) -> None:
     if args.controller == "ovs":
-        net.addController("c0", controller=OVSController)
-        info("*** Using local OVS controller\n")
+        # ovs-controller was removed from modern OVS. Switches are configured
+        # with failMode="standalone" so they act as self-contained learning
+        # bridges without any external controller binary.
+        info("*** Using OVS standalone mode (no external controller needed)\n")
         return
 
     if args.controller == "remote":
@@ -202,12 +205,6 @@ def _run_collection(net: "Mininet", args: argparse.Namespace) -> None:
     n = args.collect_normal
     info(f"\n*** Collecting {n} normal flows + stats (this takes ~{n * 5}s)\n")
 
-    if args.controller != "remote":
-        info(
-            "*** Warning: --collect-normal works best with --controller remote "
-            "(Ryu REST API on port 8080). Proceeding anyway.\n"
-        )
-
     collector = StatsCollector(
         output_dir=args.data_dir,
         label="normal",
@@ -255,12 +252,6 @@ def _run_attack_collection(net: "Mininet", args: argparse.Namespace) -> None:
         f"\n*** Launching SYN flood: {', '.join(ATTACKER_HOSTS)} → {VICTIM_HOST}"
         f" ({victim_ip})  duration={attack_duration}s\n"
     )
-    if args.controller != "remote":
-        info(
-            "*** Warning: --collect-attack works best with --controller remote "
-            "(Ryu REST API on port 8080). Proceeding anyway.\n"
-        )
-
     # Start the flood on each attacker host (non-blocking).
     flood_procs = []
     for attacker_name in ATTACKER_HOSTS:
